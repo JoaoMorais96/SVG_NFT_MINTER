@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Pyctor NFT Factory</title>
+
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/socialLinks.css" rel="stylesheet">
+  <link href="css/glitchButtons.css" rel="stylesheet">
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Application -->
+  <link href="css/app.css" rel="stylesheet">
+
+<!-- IFPS/Moralis SK code-->
+<script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+</head>
+
+<body>
+  <div class="grid-container">
+    <div class="grid-item-1">
+      <h1 style="font-size: 75px">Pyctor NFT Factory</h1>
+    </div>
+
+    
+     <!-- <div class="row">
+        <div class="col-lg-12">
+          <p id="account" class="welcome pull-right"></p>
+          <p id="accountBalance" class="welcome pull-left"></p>
+        </div>
+      </div>-->
+
+          <div class="btn-group-vertical grid-item-2">
+            <button type="button" class="cybr-btn" onclick="App.getTokenURI(); return false;">
+              Current Token URI<span aria-hidden>_</span>
+              <span aria-hidden class="cybr-btn__glitch">Current Token URI_</span>
+              <span aria-hidden class="cybr-btn__tag">3.14</span>
+            </button>
+            <button type="button" class="cybr-btn" data-toggle="modal" onclick="App.getPassword(); return false;">
+              Get Password<span aria-hidden>_</span>
+              <span aria-hidden class="cybr-btn__glitch">Get Password_</span>
+              <span aria-hidden class="cybr-btn__tag">3.14</span>
+            </button>
+            <button type="button" class="cybr-btn" data-toggle="modal" data-target="#createNFT">
+              Create Pyctor NFTs<span aria-hidden>_</span>
+              <span aria-hidden class="cybr-btn__glitch">Create Pyctor NFTs_</span>
+              <span aria-hidden class="cybr-btn__tag">3.14</span>
+            </button>
+            <button type="button" class="cybr-btn" data-toggle="modal" data-target="#mintEmployeeNFT">
+              Get Employee NFT!<span aria-hidden>_</span>
+              <span aria-hidden class="cybr-btn__glitch">Get my Pyctor Employee NFT!_</span>
+              <span aria-hidden class="cybr-btn__tag">3.14</span>
+            </button>
+          </div>
+    
+  </div>
+
+  <!-- Modal form to get an NFT -->
+  <div class="modal fade" id="mintEmployeeNFT" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">We need some things from you first...</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-lg-12">
+              <form>
+                <div class="form-group">
+                  <label for="article_name">Member Password</label>
+                  <input type="password" class="form-control" id="contract_password" placeholder="Enter the password">
+                </div>
+                <div class="form-group">
+                  <label for="price">Employee ID</label>
+                  <input type="text" class="form-control" id="employee_id" placeholder="Enter your employee ID">
+                </div>
+                
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.mintEmployeeNFT(); return false;">All Done!</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Modal form to make an NFT -->
+  <div class="modal fade" id="createNFT" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">We need some things from you first...</h4>
+        </div>
+        <div class="modal-body">
+
+          <div class="row">
+            <div class="col-lg-12">
+              <form>
+                <div class="form-group">
+                  <label for="article_name">Creator Password</label>
+                  <input type="password" class="form-control" id="creator_password" placeholder="Enter the password">
+                </div>
+                <div class="form-group">
+                  <label for="nameID">NFT name/ID</label>
+                  <input type="text" class="form-control" id="nameID" placeholder="Enter the NFT NFT name/ID">
+                </div>
+                <div class="form-group">
+                  <label for="description">NFT description</label>
+                  <input type="text" class="form-control" id="description" placeholder="Enter the NFT discription">
+                </div>
+                <div class="form-group">
+                  <label for="NFT-graphics">Insert Image:</label>
+                  <input type="file" class="form-control" id="NFT-graphics" accept="image/png, image/jpeg">
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.createNFT(); return false;">All Done!</button>
+          <button type="button" class="btn" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!--Social Button Links-->
+  <div class="grid-item-3">
+    <ul>
+      <li>
+        <a class="facebook" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <i class="fa fa-facebook" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <i class="fa fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a class="instagram" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <i class="fa fa-instagram" aria-hidden="true"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <i class="fa fa-linkedin" aria-hidden="true"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/web3.min.js"></script>
+  <script src="js/truffle-contract.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

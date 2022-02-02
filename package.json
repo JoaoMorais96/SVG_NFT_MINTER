@@ -1,0 +1,25 @@
+{
+  "name": "NFT-Pyctor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "dev": "lite-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@openzeppelin/contracts": "^4.4.2",
+    "@truffle/hdwallet-provider": "^1.7.0",
+    "base64-sol": "^1.1.0",
+    "buffer": "^6.0.3"
+  },
+  "devDependencies": {
+    "lite-server": "^2.3.0"
+  }
+}

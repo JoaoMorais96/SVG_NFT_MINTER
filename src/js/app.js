@@ -49,6 +49,20 @@ App = {
       return 0;
     });
   },
+ 
+  depositMoneyToContract: function () {
+    App.contracts.EmployeeToken.deployed()
+    .then(async function (instance) {
+      return instance.deposit({
+        from: App.account,
+        value: Number("50000000000000000"),//<amount-in-Wei> 0.5eth=50000000000000000wei
+      });
+    })
+    .then(function (result) {})
+    .catch(function (err) {
+      console.error(err);
+    });
+  },
 
   getPassword: function () {
     App.contracts.EmployeeToken.deployed()

@@ -37,6 +37,17 @@ contract EmployeeToken is Ownable, ERC721URIStorage {
         _;
     }
 
+    //Deposit eth into this contract. Msg.data must be empty
+    receive() external payable {}
+
+    //Fallback is called when msg.data is not empty
+    fallback() external payable {}
+
+    //Get this contract balance to see if it needs to be funded (since it will pay NFT minting)
+    function getContractBalance() public view returns (uint256) {
+        return address(this).balance;
+    }
+
     //Changes the token URI when provided with a new svg file
     function changeTokenUri(string memory _newSvg) public onlyOwner {
         tokenURIStr = formatTokenURI(svgToImageURI(_newSvg));

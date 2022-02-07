@@ -24,11 +24,18 @@ const HDWalletProvider = require("@truffle/hdwallet-provider")
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+require('dotenv').config()
+
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL;
+const ACCOUNT_1_PASSWORD = process.env.ACCOUNT_1_PASSWORD;
+const ACCOUNT_2_PASSWORD = process.env.ACCOUNT_2_PASSWORD;
 
 const private_keys = [
-  'df298d7a6047729643b7862057c4a6249de8b602a8559aca99934b9f4dcf802c',
-  'd4a2930376d67d83a7b4b1ea57b1bcf45284b8003484eccf8af4657040484536'
+  ACCOUNT_1_PASSWORD,
+  ACCOUNT_2_PASSWORD
 ]
+
+
 module.exports = {
   /**
    * Networks define how you connect to your ethereum client and let you set the
@@ -49,7 +56,7 @@ module.exports = {
     rinkeby: {
       provider: () => new HDWalletProvider({
         privateKeys: private_keys,
-        providerOrUrl: 'https://rinkeby.infura.io/v3/37cfcd98f8734f03b18be662116e9c12',
+        providerOrUrl: RINKEBY_RPC_URL,
         numberOfAddresses: 2
       }),
       network_id: 4,

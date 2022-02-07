@@ -17,7 +17,8 @@
     "@openzeppelin/contracts": "^4.4.2",
     "@truffle/hdwallet-provider": "^1.7.0",
     "base64-sol": "^1.1.0",
-    "buffer": "^6.0.3"
+    "buffer": "^6.0.3",
+    "dotenv": "^16.0.0"
   },
   "devDependencies": {
     "lite-server": "^2.3.0"

@@ -133,7 +133,7 @@ App = {
   },
 
   mintEmployeeNFT: function () {
-    // retrieve the detail of the article
+    // retrieve the details
     let _contract_password = $("#contract_password").val();
     var _employee_id = $("#employee_id").val();
 
@@ -153,6 +153,12 @@ App = {
       .catch(function (err) {
         console.error(err);
       });
+  },
+
+  depositToGasTank: async function() { //////INCOMPLETE!!!!!!!!!
+    // retrieve the eth amount to be deposit
+    let _eth_to_deposit = $("#eth_to_deposit").val();
+    deposit(signer,_eth_to_deposit)
   },
 };
 

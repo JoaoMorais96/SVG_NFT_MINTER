@@ -17,6 +17,12 @@ body {
   background: linear-gradient(90deg, #f5ed00 80%, #e6de00 80%), #fff700;
 }
 
+/*.deposit-btn-location {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+}*/
+
 body .cybr-btn + .cybr-btn {
   margin-top: 2rem;
 }

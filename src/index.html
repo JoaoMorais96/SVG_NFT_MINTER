@@ -24,6 +24,10 @@
 
 <!-- IFPS/Moralis SK code-->
 <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+
+<!-- Ethers.js for ITX-->
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"
+        type="application/javascript"></script>
 </head>
 
 <body>
@@ -39,8 +43,17 @@
           <p id="accountBalance" class="welcome pull-left"></p>
         </div>
       </div>-->
-
           <div class="btn-group-vertical grid-item-2">
+            <button type="button" class="cybr-btn" data-toggle="modal" data-target="#createNFT">
+              Create Pyctor NFTs<span aria-hidden>_</span>
+              <span aria-hidden class="cybr-btn__glitch">Create Pyctor NFTs_</span>
+              <span aria-hidden class="cybr-btn__tag">3.14</span>
+            </button>
+            <button type="button" class="cybr-btn" data-toggle="modal" data-target="#mintEmployeeNFT">
+              Get Employee NFT!<span aria-hidden>_</span>
+              <span aria-hidden class="cybr-btn__glitch">Get my Pyctor Employee NFT!_</span>
+              <span aria-hidden class="cybr-btn__tag">3.14</span>
+            </button>
             <button type="button" class="cybr-btn" onclick="App.getTokenURI(); return false;">
               Current Token URI<span aria-hidden>_</span>
               <span aria-hidden class="cybr-btn__glitch">Current Token URI_</span>
@@ -51,14 +64,9 @@
               <span aria-hidden class="cybr-btn__glitch">Get Password_</span>
               <span aria-hidden class="cybr-btn__tag">3.14</span>
             </button>
-            <button type="button" class="cybr-btn" data-toggle="modal" data-target="#createNFT">
-              Create Pyctor NFTs<span aria-hidden>_</span>
-              <span aria-hidden class="cybr-btn__glitch">Create Pyctor NFTs_</span>
-              <span aria-hidden class="cybr-btn__tag">3.14</span>
-            </button>
-            <button type="button" class="cybr-btn" data-toggle="modal" data-target="#mintEmployeeNFT">
-              Get Employee NFT!<span aria-hidden>_</span>
-              <span aria-hidden class="cybr-btn__glitch">Get my Pyctor Employee NFT!_</span>
+            <button type="button" class="cybr-btn" data-toggle="modal" data-target="#gasTankDeposit">
+              Gas Tank Deposit<span aria-hidden>_</span>
+              <span aria-hidden class="cybr-btn__glitch">Gas Tank Deposit_</span>
               <span aria-hidden class="cybr-btn__tag">3.14</span>
             </button>
           </div>
@@ -147,6 +155,37 @@
     </div>
   </div>
 
+    <!-- Modal form to deposit eth to the gastank -->
+    <div class="modal fade" id="gasTankDeposit" role="dialog">
+      <div class="modal-dialog">
+  
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">We need some things from you first...</h4>
+          </div>
+          <div class="modal-body">
+  
+            <div class="row">
+              <div class="col-lg-12">
+                <form>
+                  <div class="form-group">
+                    <label for="article_name">Amount of ETH to deposit</label>
+                    <input type="number" class="form-control" id="eth_to_deposit" placeholder="Amount of ETH">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-success" data-dismiss="modal" onclick="App.depositToGasTank(); return false;">All Done!</button>
+            <button type="button" class="btn" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+  
+      </div>
+    </div>
 
   <!--Social Button Links-->
   <div class="grid-item-3">
@@ -197,6 +236,7 @@
   <script src="js/bootstrap.min.js"></script>
   <script src="js/web3.min.js"></script>
   <script src="js/truffle-contract.js"></script>
+  <script src="js/itx.js"></script>
   <script src="js/app.js"></script>
 </body>
 

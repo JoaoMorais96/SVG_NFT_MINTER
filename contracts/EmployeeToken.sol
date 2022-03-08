@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity 0.8.11;
+pragma solidity 0.8.12;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
@@ -16,7 +16,7 @@ contract EmployeeToken is Ownable, ERC721URIStorage {
 
     //Regular constructor
     constructor(string memory _password)
-        ERC721("Pyctor Employee NFT", "PYENFT")
+        ERC721("Employee NFT", "EMPNFT")
         Ownable()
     {
         employeeCounter = 0;

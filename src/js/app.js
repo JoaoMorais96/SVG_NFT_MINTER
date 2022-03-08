@@ -49,21 +49,8 @@ App = {
       return 0;
     });
   },
- 
-  depositMoneyToContract: function () {
-    App.contracts.EmployeeToken.deployed()
-    .then(async function (instance) {
-      return instance.deposit({
-        from: App.account,
-        value: Number("50000000000000000"),//<amount-in-Wei> 0.5eth=50000000000000000wei
-      });
-    })
-    .then(function (result) {})
-    .catch(function (err) {
-      console.error(err);
-    });
-  },
 
+  //Gets the passwor. Can only be called by the initial contract sender address
   getPassword: function () {
     App.contracts.EmployeeToken.deployed()
       .then(async function (instance) {
@@ -76,6 +63,7 @@ App = {
       });
   },
 
+  //Gets the current image of the NFT (svg link)
   getTokenURI: function () {
     App.contracts.EmployeeToken.deployed()
       .then(async function (instance) {
@@ -87,11 +75,69 @@ App = {
       });
   },
 
-  createNFT: async function () {
+    //Changes the current image to be minted as an NFT (svg link)
+    changeTokenURI: function () {
+      let _new_svg = $("#newTokenURI").val();
+      
+      App.contracts.EmployeeToken.deployed()
+        .then(async function (instance) {
+          console.log(await instance.changeTokenUri(_new_svg, {
+            from: App.account,
+            gas: 5000000,
+          }));
+        })
+        .then(function (result) {})
+        .catch(function (err) {
+          console.error(err);
+        });
+    },
 
+  //Mints and sends the NFT to the msg.sender
+  mintEmployeeNFT: function () {
+    // retrieve the details
+    let _contract_password = $("#contract_password").val();
+    var _employee_id = $("#employee_id").val();
+
+    if (_employee_id.trim() == "" ||_contract_password.trim() == "") {
+      // nothing to sell
+      return false;
+    }
+
+    App.contracts.EmployeeToken.deployed()
+      .then(async function (instance) {
+        return instance.createEmployeeNFT(_contract_password, _employee_id, {
+          from: App.account,
+          gas: 5000000,
+        });
+      })
+      .then(function (result) {})
+      .catch(function (err) {
+        console.error(err);
+      });
+  },
+
+  /////////////////////////////Deposit money to contract. Possible future use in English auction/////////////
+  depositMoneyToContract: function () {
+    App.contracts.EmployeeToken.deployed()
+    .then(async function (instance) {
+      return instance.deposit({
+        from: App.account,
+        value: Number("50000000000000000"),//<amount-in-Wei> 0.5eth=50000000000000000wei
+       });
+    })
+    .then(function (result) {})
+    .catch(function (err) {
+      console.error(err);
+    });
+  },
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+  /////////////////////////////////////////IPFS(still to be added)/////////////////////////////////////////////
+  createNFT: async function () {
+    require(dotenv).config();
     // Connect Moralis to server
-    Moralis.initialize("jrU3irZAahs5sFfSC3b0KOxCS2PthYGLX1B7EZrI");
-    Moralis.serverURL = "https://kgjyxei95ex5.usemoralis.com:2053/server";
+    Moralis.initialize(process.env.MORALIS_KEY);
+    Moralis.serverURL = process.env.MORALIS_SERVER;
 
     //Upload an image
     uploadImage =  async () => {
@@ -131,35 +177,15 @@ App = {
         await uploadMetadata(imageUploaded);
       })
   },
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  mintEmployeeNFT: function () {
-    // retrieve the details
-    let _contract_password = $("#contract_password").val();
-    var _employee_id = $("#employee_id").val();
-
-    if (_employee_id.trim() == "" ||_contract_password.trim() == "") {
-      // nothing to sell
-      return false;
-    }
-
-    App.contracts.EmployeeToken.deployed()
-      .then(async function (instance) {
-        return instance.createEmployeeNFT(_contract_password, _employee_id, {
-          from: App.account,
-          gas: 5000000,
-        });
-      })
-      .then(function (result) {})
-      .catch(function (err) {
-        console.error(err);
-      });
-  },
-
-  depositToGasTank: async function() { //////INCOMPLETE!!!!!!!!!
+  //////////////////////////////GAS TANK is added but no payed minting implementation///////////////////////////
+  depositToGasTank: async function() {
     // retrieve the eth amount to be deposit
     let _eth_to_deposit = $("#eth_to_deposit").val();
     deposit(signer,_eth_to_deposit)
   },
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 };
 
 $(function () {
